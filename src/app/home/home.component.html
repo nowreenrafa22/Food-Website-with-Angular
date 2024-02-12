@@ -1,0 +1,43 @@
+<!-- <div></div><br> -->
+<app-tags></app-tags>
+<div class="buttons">
+    <button class="button-24" role="button" (click)="add()">ADD</button>
+    <button class="button-24" role="button" (click)="remove()">DELETE</button>
+    <button class="button-24" role="button" (click)="openDialog()">ADD FOOD</button>
+</div>
+<router-outlet></router-outlet>
+<ul>
+    <li *ngFor="let food of foods">
+        <a (click)="routeFoodPage(food.id)">
+            <img src="{{food.imageUrl}}" alt="{{food.name}}">
+            <div class="content">
+                <div class="name">
+                    {{food.name}}
+                </div>
+                <span (click)="fav=false" id="{{food.id}}favorite" class="favorite {{food.favorite?'':'not'}}">
+                    ❤
+                </span>
+                
+                <div class="star">
+                    <star-rating [stars]="food.stars"/>
+                </div>
+                <div class="product-item-footer">
+                    <div class="origins">
+                        <span *ngFor="let origin of food.origins">
+                            {{origin}}
+                        </span>
+                    </div>
+                    <div class="cook-time">
+                            🕑
+                        {{food.cookTime}}
+                    </div>
+                </div>
+                <div class="price">
+                    <span>
+                        &#2547;{{food.price}}
+                    </span>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,47 @@
+<h2>Welcome {{firstName}}</h2>
+
+<div id="contactForm">
+    <form #login="ngForm" action="'#">
+        <label for="chk" aria-hidden="true">Sign up</label>
+        <input #name="ngModel" maxlength="10" required pattern="[A-Za-z\s]+"
+        type="name" name="name" placeholder="Name" [(ngModel)]="foodPopUpObj.name">
+        <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+            <div *ngIf="name.errors?.['required']">
+                Name Required
+            </div>
+            <div *ngIf="name.errors?.['maxlength']">
+                Max length exceeded
+            </div>
+            <div *ngIf="name.errors?.['pattern']">
+                Name must contain only letters and spaces
+            </div>
+        </div>
+        <input #price="ngModel" maxlength="4" required pattern="[0-9]+" 
+        type="price" name="price" placeholder="Price" [(ngModel)]="foodPopUpObj.price">
+        <div *ngIf="price.touched && price.invalid" class="alert alert-danger">
+            <div *ngIf="price.errors?.['required']">
+                Price Required
+            </div>
+            <div *ngIf="price.errors?.['maxlength']">
+                Max price limit exceeded
+            </div>
+            <div *ngIf="price.errors?.['pattern']">
+                Price must contain only numbers
+            </div>
+        </div>
+        <input type="cookTime" name="cookTime" placeholder="Cook Time" [(ngModel)]="foodPopUpObj.cookTime">
+        <div class="custom-select" style="width: 350px;border-color: black;border-width: 2px;" id="standard-select" type="Favorite" name="Favorite" placeholder="Favorite" [(ngModel)]="foodPopUpObj.favorite">
+            <select>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+            </select>
+        </div>
+       
+        <!-- <input type="Favorite" name="Favorite" placeholder="Favorite" [(ngModel)]="foodPopUpObj.favorite"> -->
+        <input type="Stars" name="Stars" placeholder="Stars" [(ngModel)]="foodPopUpObj.stars">
+        <input type="Origins" name="Origins" placeholder="Origins" [(ngModel)]="strOrigins">
+        <input type="Image Path" name="Image Path" placeholder="Image Path" [(ngModel)]="foodPopUpObj.imageUrl">
+        <input type="Tags" name="Tags" placeholder="Tags" [(ngModel)]="strTags">
+        <button class="button-24" role="button" (click)="addFood()">Add Food</button>
+    </form>
+</div>
